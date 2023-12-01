@@ -1,4 +1,4 @@
-module Day1.P1 (solve, firstDigitR, getNum) where
+module Day1.P1 (solve) where
 
 import Data.Char (isDigit, isAlpha)
 
