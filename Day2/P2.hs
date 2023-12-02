@@ -9,6 +9,6 @@ solve = do
     let allLines = lines inp
 
     let games = map (parseGame . drop 5) allLines
-    let possibleGames = map (\game -> let m = maxOcc game in r m * g m * b m) games
+    let powerGames = map (\game -> let m = maxOcc game in r m * g m * b m) games
 
-    print (sum possibleGames)
+    print (sum powerGames)
