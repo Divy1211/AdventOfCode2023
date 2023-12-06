@@ -34,6 +34,7 @@ solve = do
     let paddedLines = map (++ ".") allLines
     let threeLines = zip3 (repeat '.' : paddedLines) paddedLines (tail paddedLines ++ [repeat '.'])
     let posGearsNums = concatMap findGearPosNums (zip [1..] threeLines)
+    -- Map.fromListWith is O(n log n) ... is there a better way?
     let gearNumMap = (Map.fromListWith (\(y1, c1) (y2, c2) -> (y1*y2, c1+c2)) . map (\(x, y) -> (x, (y, 1)))) posGearsNums
 
     print (Map.foldl (\acc (v, c) -> if c == 2 then v + acc else acc) 0 gearNumMap)
