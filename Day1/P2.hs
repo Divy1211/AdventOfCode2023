@@ -8,6 +8,7 @@ firstDigitL str = do
     let tailStr = tail str
     case head str of
         x | isDigit x -> x
+        
         'o' | "ne"   `isPrefixOf` tailStr -> '1'
         't' | "wo"   `isPrefixOf` tailStr -> '2'
         't' | "hree" `isPrefixOf` tailStr -> '3'
@@ -17,6 +18,7 @@ firstDigitL str = do
         's' | "even" `isPrefixOf` tailStr -> '7'
         'e' | "ight" `isPrefixOf` tailStr -> '8'
         'n' | "ine"  `isPrefixOf` tailStr -> '9'
+        
         _ -> firstDigitL tailStr
 
 firstDigitR :: String -> Char
@@ -24,6 +26,7 @@ firstDigitR str = do
       let headStr = tail str
       case head str of
           x | isDigit x -> x
+          
           'e' | reverse "on"   `isPrefixOf` headStr -> '1'
           'o' | reverse "tw"   `isPrefixOf` headStr -> '2'
           'e' | reverse "thre" `isPrefixOf` headStr -> '3'
@@ -33,6 +36,7 @@ firstDigitR str = do
           'n' | reverse "seve" `isPrefixOf` headStr -> '7'
           't' | reverse "eigh" `isPrefixOf` headStr -> '8'
           'e' | reverse "nin"  `isPrefixOf` headStr -> '9'
+          
           _ -> firstDigitR headStr
 
 

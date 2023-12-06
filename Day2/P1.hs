@@ -18,10 +18,11 @@ maxOccurrence :: String -> Occurrence
 maxOccurrence = snd . foldl (\(acc, occ) c ->
     case c of
         x | isDigit x -> ((acc * 10) + digitToInt x, occ)
+        
         'r' -> (0, occ {r = max acc (r occ)})
         'g' -> (0, occ {g = max acc (g occ)})
         'b' -> (0, occ {b = max acc (b occ)})
-        _ -> (acc, occ)
+        _   -> (acc, occ)
     ) (0, Occurrence {r = 0, g = 0, b = 0})
 
 parseGame :: String -> Game

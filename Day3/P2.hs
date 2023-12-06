@@ -9,20 +9,20 @@ isSym = (== '*')
 findGearPosNums :: (Int, (String, String, String)) -> [((Int, Int), Int)] -- pos, num
 findGearPosNums (line, (l1, l2, l3)) =
     (\(_, _, _, _, posList) -> posList) (foldl (\(col, (symLine, symCol), num, wasSym, posList) (c1, c, c2) ->
-        let ((symLine_n, symCol_n), symAround)
+        let ((symLine', symCol'), symAround)
                 | isSym c1  = ((line - 1, col), True)
                 | isSym c   = ((line, col), True)
                 | isSym c2  = ((line + 1, col), True)
                 | wasSym    = ((symLine, symCol), False)
                 | otherwise = ((-1, -1), False)
              in
-        let (num_n, wasSym_n, posList_n) = case c of
-                x   | isDigit x             -> (num * 10 + digitToInt x, symAround || wasSym, posList)
-                '.' | (symAround || wasSym) && num /= 0 -> (0, symAround, ((symLine_n, symCol_n), num) : posList)
-                '*' | num /= 0              -> (0, True, ((line, col), num) : posList)
-                _                           -> (0, symAround, posList)
+        let (num', wasSym', posList') = case c of
+                x   | isDigit x                         -> (num * 10 + digitToInt x, symAround || wasSym, posList)
+                '.' | (symAround || wasSym) && num /= 0 -> (0, symAround, ((symLine', symCol'), num) : posList)
+                '*' | num /= 0                          -> (0, True, ((line, col), num) : posList)
+                _                                       -> (0, symAround, posList)
             in
-        (col + 1, (symLine_n, symCol_n), num_n, wasSym_n, posList_n)
+        (col + 1, (symLine', symCol'), num', wasSym', posList')
     ) (0, (-1, -1), 0, False, []) (zip3 l1 l2 l3))
 
 solve :: IO ()
