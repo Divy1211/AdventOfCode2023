@@ -1,4 +1,4 @@
-module Day2.P1 (solve, parseGame, Game (num, maxOcc), Occurrence (r, g, b)) where
+module Day2.P1 (solve, parseGame, Game (..), Occurrence (..)) where
 
 import Data.List (foldl')
 import Data.Char (isDigit, digitToInt)

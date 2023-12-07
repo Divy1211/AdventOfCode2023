@@ -1,7 +1,7 @@
 module Day4.P2 (solve) where
 
-import Day4.P1 (parseCards)
 import qualified Data.Set as Set
+import Day4.P1 (parseCards)
 
 
 calcNumMatches :: String -> Int

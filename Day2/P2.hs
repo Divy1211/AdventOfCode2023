@@ -1,6 +1,6 @@
 module Day2.P2 (solve) where
 
-import Day2.P1 (parseGame, Game (num, maxOcc), Occurrence (r, g, b))
+import Day2.P1 (parseGame, Game (..), Occurrence (..))
 
 
 solve :: IO ()
