@@ -1,5 +1,6 @@
 module Day3.P2 (solve) where
 
+import Data.List (foldl')
 import Data.Char (isDigit, digitToInt)
 import qualified Data.Map as Map
 
@@ -8,7 +9,7 @@ isSym = (== '*')
 
 findGearPosNums :: (Int, (String, String, String)) -> [((Int, Int), Int)] -- pos, num
 findGearPosNums (line, (l1, l2, l3)) =
-    (\(_, _, _, _, posList) -> posList) (foldl (\(col, (symLine, symCol), num, wasSym, posList) (c1, c, c2) ->
+    (\(_, _, _, _, posList) -> posList) (foldl' (\(col, (symLine, symCol), num, wasSym, posList) (c1, c, c2) ->
         let ((symLine', symCol'), symAround)
                 | isSym c1  = ((line - 1, col), True)
                 | isSym c   = ((line, col), True)
@@ -37,4 +38,4 @@ solve = do
     -- Map.fromListWith is O(n log n) ... using a mutable version of Map would give O(n), but mutability...
     -- Also, log n is not too bad in practice, log n = 32 is ~2B entries in the map!
 
-    print (Map.foldl (\acc (v, c) -> if c == 2 then v + acc else acc) 0 gearNumMap)
+    print (Map.foldl' (\acc (v, c) -> if c == 2 then v + acc else acc) 0 gearNumMap)

@@ -1,5 +1,6 @@
 module Day3.P1 (solve) where
 
+import Data.List (foldl')
 import Data.Char (isDigit, digitToInt)
 
 
@@ -10,7 +11,7 @@ isSym c =  case c of
     _ -> True
 
 sumMiddleLine :: (String, String, String) -> Int
-sumMiddleLine (l1, l2, l3) = (\(lsum, _, _) -> lsum) (foldl (\(lsum, num, wasSym) (c1, c, c2) ->
+sumMiddleLine (l1, l2, l3) = (\(lsum, _, _) -> lsum) (foldl' (\(lsum, num, wasSym) (c1, c, c2) ->
         let symAround = isSym c1 || isSym c2 in
         case c of
             x   | isDigit x           -> (lsum, num * 10 + digitToInt x, wasSym || symAround)

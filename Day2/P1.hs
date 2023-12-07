@@ -1,5 +1,6 @@
 module Day2.P1 (solve, parseGame, Game (num, maxOcc), Occurrence (r, g, b)) where
 
+import Data.List (foldl')
 import Data.Char (isDigit, digitToInt)
 
 
@@ -15,7 +16,7 @@ data Game = Game {
 }
 
 maxOccurrence :: String -> Occurrence
-maxOccurrence = snd . foldl (\(acc, occ) c ->
+maxOccurrence = snd . foldl' (\(acc, occ) c ->
     case c of
         x | isDigit x -> ((acc * 10) + digitToInt x, occ)
         

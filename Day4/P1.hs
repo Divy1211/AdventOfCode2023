@@ -1,12 +1,13 @@
 module Day4.P1 (solve, parseCards) where
 
+import Data.List (foldl')
 import Data.Char (isDigit, digitToInt)
 import Data.Set (Set)
 import qualified Data.Set as Set
 
 
 parseCards :: String -> (Set Int, Set Int)
-parseCards = (\(winNums, myNums, _, _) -> (winNums, myNums)) . foldl (\(winNums, myNums, isMyNum, num) c ->
+parseCards = (\(winNums, myNums, _, _) -> (winNums, myNums)) . foldl' (\(winNums, myNums, isMyNum, num) c ->
     let (num', winNums', myNums') = case c of
             x | isDigit x           -> (num * 10 + digitToInt c, winNums, myNums)
               | num /= 0 && isMyNum -> (0, winNums, Set.insert num myNums)
