@@ -8,10 +8,7 @@ data Range = Range {
     src :: Int,
     len :: Int,
     dst :: Int
-}
-
-instance Show Range where
-    show Range{src=s, len=l, dst=d} = show (s, l, d)
+} deriving (Show)
 
 inRange :: Int -> Range -> Bool
 inRange seed Range{src=s, len=l, dst=_} = s < seed && seed < (s + l)
