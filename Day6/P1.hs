@@ -5,7 +5,8 @@ import Data.Char (isDigit, digitToInt)
 
 
 parseDoubles :: String -> [Double]
-parseDoubles = snd . foldl(\(num, ls) i -> case i of
+parseDoubles = snd . foldl(\(num, ls) i ->
+    case i of
         x | isDigit x -> (num * 10 + digitToInt x, ls)
         _ | num /= 0  -> (0, (fromIntegral num :: Double) : ls)
         _             -> (0, ls)
