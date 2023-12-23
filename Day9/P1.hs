@@ -1,4 +1,4 @@
-module Day9.P1 (solve, parseInts, findDiffSeq) where
+module Day9.P1 (solve, parseInts, findDiffSeq, allEq) where
 
 import Data.Char (isDigit, digitToInt)
 
